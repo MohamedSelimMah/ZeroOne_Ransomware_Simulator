@@ -1,169 +1,110 @@
+# 🔐 Ransomware Simulator (For Educational Use Only) ⚠️  
+*A safe, hands-on tool to explore ransomware behavior — without real-world harm.*
 
-# Trojan Calculator Simulator (GUI) - Educational Tool v2.5
-
-**Author**: MohamedSelim  
-**GitHub**: [ZeroOne](https://github.com/MohamedSelimMah)  
-**License**: [MIT](LICENSE)  
-
-![Python Version](https://img.shields.io/badge/Python-3.7%2B-blue)  
----
-
-## 📖 Overview
-
-**Trojan Calculator Simulator v2.5** is a fully interactive educational tool that demonstrates Trojan horse behavior in a safe, simulated GUI environment. Version 2.5 introduces simulated **file encryption/decryption**, an improved **keylogger**, and enhanced logging of fake persistence techniques.
-
-**Disclaimer**:  
-⚠️ **This is a safe simulation only. No actual malicious behavior occurs.**  
-All effects are purely educational and non-destructive — no real files are harmed or accessed without user consent.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Educational Use](https://img.shields.io/badge/Use-Educational-purple)](#️-important-disclaimers)
 
 ---
 
-## 🎯 Key Features (v2.5)
+## 📌 About
+This project simulates a **harmless ransomware attack** for **educational and research purposes**. It demonstrates file encryption techniques in a controlled, reversible, and fully transparent environment.  
 
-### Calculator Core
-- ✅ **Basic Operations**: Addition, Subtraction, Multiplication, Division
-- 🖥️ **GUI Interface**: Built using Tkinter for intuitive interaction
-- 🚫 **Input Validation**: Handles:
-  - Invalid input
-  - Division by zero
-  - Empty fields
-
-### Trojan Behavior Simulation
-- 🕵️ **Stealth Actions**: Creates harmless `fake_file.txt` after each calculation
-- 🔁 **Persistence Simulation**: Logs fake startup registration in `persistence_log.txt`
-- 🔄 **Reboot Detection**: Detects reruns using a marker file (`restart_simu.txt`)
-- 🔡 **Simulated Keylogger**: Captures typed keys in `keylog_sim.txt` while the GUI is active
-- 🔐 **File Locking Simulation** *(NEW!)*: Encodes selected files using Base64 (mimics ransomware)
-- 🔓 **File Unlocking** *(NEW!)*: Prompts for a fake decryption key to restore locked files
-- 📜 **Activity Logs**: All actions logged for user review
-
-### Educational Value
-- 🎓 **Hands-on Learning**: See how Trojan behaviors might operate
-- 🔒 **Safe Sandbox**: All effects are local, visible, and reversible
-- 💡 **Cyber Awareness**: Ideal for training sessions and ethical hacking education
+> 💡 Designed for cybersecurity learners, ethical hackers, and teachers.
 
 ---
 
-## 🛠️ How It Works
-
-### User Interaction
-1. Input two numbers.
-2. Select an operation (+, -, ×, ÷).
-3. Click **Calculate**.
-4. A fake payload is triggered: logs, fake files, keylogs, and more.
-5. Optionally, "lock" or "unlock" files using the file selector.
-
-### Simulation Flow
-
-```python
-def Payload():
-    with open("fake_file.txt", "w") as fake_file:
-        fake_file.write("This is a fake file created by the Trojan simulator.")
-    simulate_persistence()
-
-def simulate_persistence():
-    with open("persistence_log.txt", "a") as log:
-        log.write("\n[Simulated Persistence Triggered]\n")
-
-def check_restart():
-    if os.path.exists("restart_simu.txt"):
-        with open("persistence_log.txt", "a") as log:
-            log.write("\n[Restart Detected]\n")
-    else:
-        with open("persistence_log.txt", "a") as log:
-            log.write("\n[First Time Launch Detected]\n")
-    with open("restart_simu.txt", "w") as f:
-        f.write("Simulated reboot marker")
-
-def log_keystroke(event):
-    with open("keylog_sim.txt", "a") as log:
-        log.write(event.char)
-```
-
-Additional simulated functions include:
-
-```python
-def lock_file(file_path):
-    with open(file_path, "rb") as f:
-        encoded = base64.b64encode(f.read())
-    with open(file_path, "wb") as f:
-        f.write(encoded)
-
-def unlock_file(file_path, key):
-    if key == "letmein":
-        with open(file_path, "rb") as f:
-            decoded = base64.b64decode(f.read())
-        with open(file_path, "wb") as f:
-            f.write(decoded)
-    else:
-        print("Incorrect key. Simulated decryption failed.")
-```
+## 🚀 Features
+- 🧮 Disguised as a simple calculator interface
+- 🔐 Simulated file encryption (no actual data loss)
+- 🗝️ Real-time decryption with key validation
+- 💾 Secure local backups created automatically
+- 📘 Transparent logging of all operations
+- 🛑 Ethical warnings and non-malicious by design
 
 ---
 
-## 🚀 Installation
+## 🛠️ Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/ZeroOne/TrojanCalculatorSimulator.git
-
-# Navigate into the folder
-cd TrojanCalculatorSimulator
-
-# Run the simulator
-python3 trojan_calculator_simulator.py
+git clone https://github.com/yourusername/ransomware-simulator.git
+cd ransomware-simulator
+pip install -r requirements.txt
 ```
 
-**Requirements**:  
-- Python 3.7+
-- Tkinter (included in standard Python distributions)
+> ✅ Python 3.8 or newer required
 
 ---
 
-## 📜 Version Information
+## 🖥️ How to Use
 
-### v2.5 Highlights
-- 🔐 **File Encryption Simulation**: Base64 encodes selected files
-- 🔓 **File Decryption Simulation**: Unlocks files using a predefined fake key (`letmein`)
-- 🧠 **Keylogger Enhancements**: More responsive and logs all keystrokes in the active window
-- 📁 **Robust Persistence Simulation**: Smarter detection of simulated reboots
-- 🪟 **Improved GUI & UX**: Clean layout, better messaging, thread-safe updates
+### 🔒 Simulate Encryption (via Calculator)
+```bash
+python main.py
+```
+1. Use the calculator as normal.
+2. Upon exiting, choose files to "encrypt".
+3. Encrypted versions are saved and backups stored in `Desktop/You_Got_Hacked`.
 
----
-
-## 📌 Educational Scenarios
-
-Use the simulator to demonstrate common Trojan tactics in a controlled setting:
-
-| Scenario                  | Simulated Behavior                                             |
-|---------------------------|----------------------------------------------------------------|
-| **Basic Calculation**     | Performs operation + drops fake file + logs persistence       |
-| **Key Press Simulation**  | Captures keystrokes to `keylog_sim.txt`                       |
-| **First Launch**          | Logs startup in `persistence_log.txt`                         |
-| **App Re-run**            | Logs a fake reboot using a marker file                        |
-| **File Locking**          | Encodes file content as if encrypted by ransomware            |
-| **File Unlocking**        | Requires fake key (`letmein`) to decode simulated file        |
+### 🔓 Decrypt Files
+```bash
+python decrypt.py
+```
+1. Enter the key shown during encryption.
+2. Select files for restoration.
+3. Files are recovered from safe backups.
 
 ---
 
-## 🛑 Critical Reminder
+## 📂 Project Structure
 
-**This tool is strictly for**:  
-✅ Education  
-✅ Ethical hacking workshops  
-✅ Cybersecurity awareness sessions  
-
-**Do NOT use for**:  
-❌ Real-world exploitation  
-❌ Penetration testing without consent  
-❌ Malware deployment or obfuscation  
+```
+📦 ransomware-simulator/
+├── 📜 main.py           → Calculator + encryption logic
+├── 📜 decrypt.py        → Decryption tool
+├── 📜 config.py         → Path and settings configuration
+├── 📜 requirements.txt  → Python dependencies
+└── 📂 test_files/       → Sample files to practice on
+```
 
 ---
 
-## 🤝 Contributing
+## 🛡️ Built-in Safety Features
+- ✅ **Non-destructive**: Original files are backed up before any changes
+- ✅ **No persistence**: No system or network alterations
+- ✅ **No spreading**: No infection capabilities
+- ✅ **Full transparency**: Logs and warnings included
+- ✅ **Decryption included**: With proper key entry
 
-Contributions are welcome!  
-You can help by:
-- 🐛 Reporting bugs
-- 💡 Recommending improvements
-- 📖 Translating for non-English audiences
+---
+
+## 🧪 Testing Guide
+Sample files provided in `/test_files` to simulate attacks:
+- 📄 `test_document.txt` — simple text file
+- 🖼️ `test_image.jpg` — dummy image for testing
+
+---
+
+## ⚠️ Important Disclaimers
+- 🧪 This is **strictly an educational tool**.
+- ❌ Do **NOT** use it on systems without consent.
+- 🔒 No real harm is done — **data is backed up**.
+- 🧑‍⚖️ Misuse of this project is a violation of law and ethics.
+- 📜 Review the [LICENSE](LICENSE) for usage terms.
+
+---
+
+## 📜 License
+Licensed under the [MIT License](LICENSE).  
+Please use responsibly and only in ethical, educational contexts.
+
+---
+
+## 🤝 Contributions & Feedback
+Want to improve this project? PRs and ideas are welcome!  
+If you have questions or suggestions, open an issue or discussion.
+
+---
+
+> 🧠 “Understanding threats is the first step to defending against them.”  
+> — This simulator is a learning tool, not a weapon.
