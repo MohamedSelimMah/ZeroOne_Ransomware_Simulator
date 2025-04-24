@@ -1,4 +1,4 @@
-# 🔐 Ransomware Simulator (For Educational Use Only) ⚠️  
+# 🔐 Ransomware Simulator (For Educational Use Only) ⚠️
 *A safe, hands-on tool to explore ransomware behavior — without real-world harm.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
